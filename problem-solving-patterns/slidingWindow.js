@@ -40,6 +40,23 @@ const maxSubarraySum = (arr, num) => {
   return maxSum;
 };
 
+const mss = (a, n) => {
+  if (n > a) return null;
+  let max = 0;
+  let temp = 0;
+  // sum the 1st n
+  for (let i = 0; i < n; i++) {
+    max += a[i];
+  }
+  temp = max;
+  // "slide" window
+  for (let i = n; i < a.length; i++) {
+    temp = temp - a[i - n] + a[i];
+    if (temp > max) max = temp;
+  }
+  return max;
+};
+
 console.log("---optimized---");
-console.log(maxSubarraySum([2, 6, 9, 2, 1, 8, 5, 6, 3], 3));
+console.log(mss([2, 6, 9, 2, 1, 8, 5, 6, 3], 3));
 console.log("--- ---");
