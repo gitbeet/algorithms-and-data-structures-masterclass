@@ -40,15 +40,32 @@ class SinglyLinkedList {
     }
     return current;
   }
+  shift() {
+    if (!this.head) return undefined;
+    let currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+    }
+    return currentHead;
+  }
+  unshift(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 const sll = new SinglyLinkedList();
-console.log(sll.push(2));
-console.log(sll.push(3));
-console.log(sll.push(6));
-console.log(sll.push(1));
-console.log(sll.pop());
-console.log(sll.pop());
-console.log(sll.pop());
-console.log(sll.pop());
-console.log(sll.pop());
+console.log("--------------------");
+console.log(sll.unshift(2));
+console.log(sll.unshift(4));
+console.log(sll.unshift(6));
