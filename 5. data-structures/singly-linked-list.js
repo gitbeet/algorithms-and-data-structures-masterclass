@@ -78,6 +78,22 @@ class SinglyLinkedList {
     node.val = value;
     return true;
   }
+  insert(index, value) {
+    // index out of bounds check
+    if (index < 0 || index > this.length) return false;
+    // push if inserting next to last
+    if (index === this.length) return this.push(value);
+    // unshift if inserting left to first
+    if (index === 0) return this.unshift(value);
+    // rest of the cases
+    const newNode = new Node(value);
+    const prevNode = this.get(index - 1);
+    if(!prevNode) return false
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
+    this.length++;
+    return true;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -86,5 +102,6 @@ console.log(sll.push(2));
 console.log(sll.push(3));
 console.log(sll.push(4));
 console.log(sll.push(5));
-console.log("--------------------");
-console.log(sll.set(3, 3));
+console.log(sll.insert(0, 12));
+console.log(sll.insert(5, 32));
+console.log(sll.insert(5, 31));
