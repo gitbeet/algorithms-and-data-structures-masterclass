@@ -105,6 +105,56 @@ class SinglyLinkedList {
     this.length--;
     return removedNode;
   }
+  reverse() {
+    /*
+      head            tail
+      13 -> 27 -> 32-> 71
+
+      -----
+
+      1/ head becomes tail
+      tail
+       13
+
+      2/ save the old next of the current element (32) into a variable and then make its new next to be the prev element (13) 
+      tail
+       13 <- 27
+
+      3/ repeat the process until there's no next 
+      tail              
+       13 <- 27 <- 32 <- 71
+
+      4/ make the last element the head
+      tail              head
+       13 <- 27 <- 32 <- 71
+
+
+       */
+    let current = this.head;
+    this.head = this.tail;
+    this.tail = current;
+    let next;
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
+      // create ref for next first
+      next = current.next;
+
+      current.next = prev;
+      // move onto the next node
+      prev = current;
+      current = next;
+    }
+    return this;
+  }
+  print() {
+    let res = [];
+    let current = this.head;
+    while (current) {
+      res.push(current.val);
+      current = current.next;
+    }
+    return res;
+  }
 }
 
 const sll = new SinglyLinkedList();
@@ -114,5 +164,5 @@ console.log(sll.push(3));
 console.log(sll.push(4));
 console.log(sll.push(5));
 console.log(sll.length);
-// console.log(sll.remove(0));
-// console.log(sll.length);
+console.log(sll.reverse());
+console.log(sll.print());
