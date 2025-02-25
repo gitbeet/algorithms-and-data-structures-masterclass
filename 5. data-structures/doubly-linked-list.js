@@ -12,6 +12,19 @@ class DoublyLinkedList {
     this.tail = null;
     this.length = 0;
   }
+  print() {
+    if (!this.head) return null;
+    let res = [];
+    let current = this.head;
+    while (current) {
+      let text = `${current.prev?.value || "null"} <- (${current.value}) -> ${
+        current.next?.value || "null"
+      }`;
+      res.push(text);
+      current = current.next;
+    }
+    return res;
+  }
   push(val) {
     const newNode = new Node(val);
     if (!this.head) {
@@ -25,18 +38,19 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
-  print() {
-    if (!this.head) return null;
-    let res = [];
-    let current = this.head;
-    while (current) {
-      let text = `${current.prev?.value || "null"} <- (${current.value}) -> ${
-        current.next?.value || "null"
-      }`;
-      res.push(text);
-      current = current.next;
+  pop() {
+    if (!this.head) return undefined;
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
     }
-    return res;
+    this.length--;
+    return poppedNode;
   }
 }
 
@@ -57,4 +71,14 @@ console.log(dll.push(2));
 console.log("*************************");
 console.log(dll.push(3));
 console.log("*************************");
+console.log(dll.print());
+console.log("Popping: ", dll.pop());
+console.log("*************************");
+console.log(dll.print());
+console.log("Popping: ", dll.pop());
+console.log("*************************");
+console.log(dll.print());
+console.log(dll.head);
+console.log(dll.tail);
+console.log("Popping: ", dll.pop());
 console.log(dll.print());
