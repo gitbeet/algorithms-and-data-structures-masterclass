@@ -114,6 +114,18 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+  remove(index) {
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) return !!this.shift();
+    if (index === this.length - 1) return !!this.pop();
+    const removedNode = this.get(index);
+    const prev = removedNode.prev;
+    const next = removedNode.next;
+    prev.next = next;
+    next.prev = prev;
+    this.length--;
+    return true;
+  }
 }
 
 /*
@@ -129,10 +141,8 @@ const dll = new DoublyLinkedList();
 console.log(dll.push(1));
 console.log(dll.push(2));
 console.log(dll.push(3));
+console.log(dll.push(4));
+console.log(dll.push(5));
 console.log(dll.print());
-console.log(dll.insert(3, 101));
-console.log(dll.print());
-console.log(dll.insert(4, 201));
-console.log(dll.print());
-console.log(dll.insert(0, 2201));
+console.log(dll.remove(5));
 console.log(dll.print());
