@@ -93,7 +93,26 @@ class DoublyLinkedList {
         current = current.prev;
       }
     }
-    return current.value;
+    return current;
+  }
+  set(index, val) {
+    const node = this.get(index);
+    if (!node) return false;
+    node.value = val;
+    return true;
+  }
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === 0) return !!this.unshift(val);
+    if (index === this.length) return !!this.push(val);
+    const prev = this.get(index - 1);
+    const newNode = new Node(val);
+    newNode.next = prev.next;
+    prev.next.prev = newNode;
+    newNode.prev = prev;
+    prev.next = newNode;
+    this.length++;
+    return true;
   }
 }
 
@@ -111,20 +130,9 @@ console.log(dll.push(1));
 console.log(dll.push(2));
 console.log(dll.push(3));
 console.log(dll.print());
-dll.shift();
+console.log(dll.insert(3, 101));
 console.log(dll.print());
-dll.shift();
+console.log(dll.insert(4, 201));
 console.log(dll.print());
-dll.shift();
+console.log(dll.insert(0, 2201));
 console.log(dll.print());
-dll.unshift(3);
-console.log(dll.print());
-dll.unshift(2);
-console.log(dll.print());
-dll.unshift(1);
-console.log(dll.print());
-console.log(dll.get(-1));
-console.log(dll.get(0));
-console.log(dll.get(1));
-console.log(dll.get(2));
-console.log(dll.get(3));
