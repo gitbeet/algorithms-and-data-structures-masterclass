@@ -79,6 +79,22 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let current;
+    if (index < this.length / 2) {
+      current = this.head;
+      for (let i = 0; i < index; i++) {
+        current = current.next;
+      }
+    } else {
+      current = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        current = current.prev;
+      }
+    }
+    return current.value;
+  }
 }
 
 /*
@@ -107,3 +123,8 @@ dll.unshift(2);
 console.log(dll.print());
 dll.unshift(1);
 console.log(dll.print());
+console.log(dll.get(-1));
+console.log(dll.get(0));
+console.log(dll.get(1));
+console.log(dll.get(2));
+console.log(dll.get(3));
