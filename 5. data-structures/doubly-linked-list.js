@@ -40,7 +40,7 @@ class DoublyLinkedList {
   }
   pop() {
     if (!this.head) return undefined;
-    let poppedNode = this.tail;
+    const poppedNode = this.tail;
     if (this.length === 1) {
       this.head = null;
       this.tail = null;
@@ -51,6 +51,33 @@ class DoublyLinkedList {
     }
     this.length--;
     return poppedNode;
+  }
+  shift() {
+    if (!this.head) return undefined;
+    const oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+  }
+  unshift(val) {
+    const newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head.prev = newNode;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
   }
 }
 
@@ -64,21 +91,19 @@ class DoublyLinkedList {
 */
 
 const dll = new DoublyLinkedList();
-console.log("*************************");
 console.log(dll.push(1));
-console.log("*************************");
 console.log(dll.push(2));
-console.log("*************************");
 console.log(dll.push(3));
-console.log("*************************");
 console.log(dll.print());
-console.log("Popping: ", dll.pop());
-console.log("*************************");
+dll.shift();
 console.log(dll.print());
-console.log("Popping: ", dll.pop());
-console.log("*************************");
+dll.shift();
 console.log(dll.print());
-console.log(dll.head);
-console.log(dll.tail);
-console.log("Popping: ", dll.pop());
+dll.shift();
+console.log(dll.print());
+dll.unshift(3);
+console.log(dll.print());
+dll.unshift(2);
+console.log(dll.print());
+dll.unshift(1);
 console.log(dll.print());
