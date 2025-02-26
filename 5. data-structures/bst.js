@@ -63,20 +63,35 @@ class BinarySearchTree {
       }
     }
   }
+  //   FIFO -> Breadth, FILO -> Depth
+  bfs() {
+    if (!this.root) return [];
+    let res = [];
+    let queue = [];
+    queue.push(this.root);
+    while (queue.length) {
+      let node = queue.shift();
+      res.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return res;
+  }
 }
 
 const bst = new BinarySearchTree();
-console.log(bst.insert(1));
-console.log(bst.insert(3));
-console.log(bst.insert(5));
+console.log(bst.insert(15));
 console.log(bst.insert(6));
 console.log(bst.insert(22));
+console.log(bst.insert(3));
+console.log(bst.insert(5));
+console.log(bst.insert(11));
 console.log(bst.print());
 console.log(bst.find(22));
+console.log(bst.bfs());
 /*
-        10
-     4       20    
-   3   6    14   32 
-1          11      
-     
+      15 
+    6    22
+ 3    11           
+   5
 */
