@@ -77,6 +77,39 @@ class BinarySearchTree {
     }
     return res;
   }
+  dfsPreOrder() {
+    if (!this.root) return [];
+    let res = [];
+    function traverse(node) {
+      res.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return res;
+  }
+  dfsInOrder() {
+    if (!this.root) return [];
+    let res = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      res.push(node.value);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return res;
+  }
+  dfsPostOrder() {
+    if (!this.root) return [];
+    let res = [];
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      res.push(node.value);
+    }
+    traverse(this.root);
+    return res;
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -86,9 +119,11 @@ console.log(bst.insert(22));
 console.log(bst.insert(3));
 console.log(bst.insert(5));
 console.log(bst.insert(11));
-console.log(bst.print());
-console.log(bst.find(22));
-console.log(bst.bfs());
+
+console.log("BFS: ", bst.bfs());
+console.log("DFS,Pre order: ", bst.dfsPreOrder());
+console.log("DFS,In order: ", bst.dfsInOrder());
+console.log("DFS,Post order: ", bst.dfsPostOrder());
 /*
       15 
     6    22
