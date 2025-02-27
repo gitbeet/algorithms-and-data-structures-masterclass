@@ -22,7 +22,7 @@ class BinarySearchTree {
       printNode(node.right);
     }
     printNode(this.root);
-    return res;
+    console.log(res);
   }
   insert(value) {
     const newNode = new Node(value);
@@ -110,6 +110,12 @@ class BinarySearchTree {
     traverse(this.root);
     return res;
   }
+  invert(node = this.root) {
+    if (!node) return;
+    [node.left, node.right] = [node.right, node.left];
+    this.invert(node.left);
+    this.invert(node.right);
+  }
 }
 
 const bst = new BinarySearchTree();
@@ -124,6 +130,8 @@ console.log("BFS: ", bst.bfs());
 console.log("DFS,Pre order: ", bst.dfsPreOrder());
 console.log("DFS,In order: ", bst.dfsInOrder());
 console.log("DFS,Post order: ", bst.dfsPostOrder());
+bst.invert();
+bst.print();
 /*
       15 
     6    22
