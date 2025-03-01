@@ -25,14 +25,44 @@ class Graph {
     });
     delete this.adjacencyList[vertex];
   }
+  dfsRecursive(start) {
+    const res = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      res.push(vertex);
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) return dfs(neighbor);
+      });
+    })(start);
+    return res;
+  }
 }
+
+/*
+            A
+          /   \
+        B       C
+        |       | 
+        D  ---  E
+          \   /  
+            F
+*/
 
 const graph = new Graph();
 graph.addVertex("A");
 graph.addVertex("B");
 graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 graph.addEdge("A", "B");
 graph.addEdge("A", "C");
-// graph.removeEdge("A", "B");
-graph.removeVertex("A");
-console.log(graph.adjacencyList);
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("D", "F");
+graph.addEdge("E", "F");
+console.log(graph.dfsRecursive("A"));
