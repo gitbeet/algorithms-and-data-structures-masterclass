@@ -1,11 +1,11 @@
-class Node {
+export class Node {
   constructor(value, priority) {
     this.value = value;
     this.priority = priority;
   }
 }
 
-class PriorityQueue {
+export class PriorityQueue {
   constructor() {
     this.values = [];
   }
@@ -74,28 +74,28 @@ priorityQueue.enqueue("Headache", 4);
 priorityQueue.enqueue("Cough", 3);
 priorityQueue.enqueue("Fever", 2);
 priorityQueue.enqueue("Traumatic injury", 1);
-console.log(priorityQueue.values);
-console.log("----------------------------");
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
-console.log("----------------------------");
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
-console.log("----------------------------");
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
-console.log("----------------------------");
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
-console.log("----------------------------");
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
-console.log("----------------------------");
-console.log(priorityQueue.dequeue());
-console.log(priorityQueue.values);
-console.log("----------------------------");
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
+// console.log(priorityQueue.dequeue());
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
+// console.log(priorityQueue.dequeue());
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
+// console.log(priorityQueue.dequeue());
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
+// console.log(priorityQueue.dequeue());
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
+// console.log(priorityQueue.dequeue());
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
+// console.log(priorityQueue.dequeue());
+// console.log(priorityQueue.values);
+// console.log("----------------------------");
 priorityQueue.enqueue("Headache", 4);
 priorityQueue.enqueue("Cough", 3);
 priorityQueue.enqueue("Fever", 2);
 priorityQueue.enqueue("Traumatic injury", 1);
-console.log(priorityQueue.values);
+// console.log(priorityQueue.values);
